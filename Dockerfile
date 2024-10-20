@@ -13,8 +13,11 @@ ARCH="$(arch)"
 cd /usr/local/bin/
 if [ "$ARCH" = "x86_64" ]; then
   wget "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64" -O cloudflared
-elif [ "$ARCH" = "arm64" ]; then
+elif [ "$ARCH" = "aarch64" ]; then
   wget "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64" -O cloudflared
+else
+  echo "Unsupported arch: $ARCH" >&2
+  exit 1
 fi
 chmod +x cloudflared
 EOF
