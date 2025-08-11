@@ -1,4 +1,5 @@
-FROM quay.io/jupyter/base-notebook
+# https://quay.io/repository/jupyter/base-notebook?tab=tags
+FROM quay.io/jupyter/base-notebook:lab-4.4.5
 USER root
 
 # Enable real-time collaboration
