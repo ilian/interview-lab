@@ -8,6 +8,11 @@ RUN mamba install -y jupyter-collaboration
 # Install dependencies for use within the notebook
 RUN mamba install -y numpy matplotlib
 
+# Fix permissions to let the notebook user manage packages
+RUN mamba clean --all -f -y && \
+    fix-permissions "${CONDA_DIR}" && \
+    fix-permissions "/home/${NB_USER}"
+
 # Download cloudflared
 RUN <<EOF
 ARCH="$(arch)"
